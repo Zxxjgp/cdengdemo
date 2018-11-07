@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"  >
+<head>
+    <title>主页</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            padding: 20px;
+        }
+
+        .headLeft {
+            float: left;
+        }
+
+        .headRight {
+            padding-top: 40px;
+            padding-left: 340px;
+        }
+
+        .search {
+            margin-bottom: 10px;
+        }
+
+        .search .toolbar {}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        回复
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="replyContent" name="replyContent" placeholder="请输入回复留言内容">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" id="bbt" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand " href="#">留言板系统</a>
+                    </div>
+                    <div class="navbar-right">
+                        <a class="navbar-brand" href="#">当前用户：<span th:text="${user}"></span></a>
+                    </div>
+                    <div class="navbar-right">
+                        <a class="navbar-brand" href="http://localhost:8001/logout">退出</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row" style="padding-top:30px;">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">当前帖子</a>
+                 <table class="table table-bordered table table-hover" style="width:260px; border: 0px solid transparent !important;">
+                     <tr th:each="ms : ${message}">
+                         <input  type="text" class="messageId" id="messageId" name="messageId" th:value="${ms.messageId}"  style="display:none" >
+                         <td > <a th:href="@{'http://localhost:8001/message/getById/'+${ms.messageId}}" th:text="${ms.messageTitle}"></a><button type="button" id="bbt" class="btn btn-success btn-info" data-toggle="modal" data-target="#myModal" >快速回复</button></td>
+                 </table>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <ol class="breadcrumb">
+                    <li><span class="glyphicon glyphicon-home"></span>&nbsp;<a href="#">主页</a></li>
+                    <li class="active"></li>
+                </ol>
+            </div>
+            <div style="background: red" align="center">
+                <h1>留言板系统</h1>
+            </div>
+
+            <div>
+                <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+                    <form class="form-horizontal m" id="form-user-add" enctype="[application/x-www-form-urlencoded,multipart/form-data,text/plain]">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" id="messageTitle" name="messageTitle" placeholder="请输入标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">内容：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" id="messageContent" name="messageContent" placeholder="请输入内容">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Country</label>
+                            <div class="col-lg-5">
+                                <select class="form-control" id="messageType" name="messageType" th:id="messageType">
+                                    <option value="">-- 请选择 --</option>
+                                    <option value="0" >生活</option>
+                                    <option value="1">求职</option>
+                                    <option value="2">医疗</option>
+                                    <option value="3">健康</option>
+                                    <option value="4">求职</option>
+                                    <option value="5">租房</option>
+                                    <option value="6">二手</option>
+                                    <option value="7">医疗器械</option>
+                                    <option value="8">兼职</option>
+                                    <option value="9">求医问药</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-control-static col-sm-offset-9">
+                                <button type="button" id="hit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div align="center" style="padding-top: 200px">
+                Copyright © 2018-2019 Bert
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+        $("#hit").click(function(){
+            var dataJson = $("#form-user-add").serialize();
+            var  messageTitle = $("#messageTitle").val();
+            var  messageContent = $("#messageContent").val();
+            var  messageType = $("#messageType").val();
+            var date = {"messageTitle":messageTitle,
+                "messageContent":messageContent,
+                "messageType":messageType
+            };
+            if ( messageTitle == "" || messageTitle == null || messageTitle == undefined ) {
+                return alert("请输入标题")
+            }
+            if ( messageContent == "" || messageContent == null || messageContent == undefined ) {
+                return alert("请输入内容")
+            }
+            if ( messageType == "" || messageType == null || messageType == undefined ) {
+                return alert("请输入标题")
+            }
+
+            alert(messageTitle)
+            $.ajax({
+                type:"POST",
+                url: "http://localhost:8001/message/addMessage",
+                contentType: 'application/json',
+                async: false,
+                data : JSON.stringify(date),
+                success:function(result){
+                    if(result == "success"){
+                        alert("发帖成功");
+                        clears();
+                    }
+                    else{
+                        alert("发帖失败失败");
+                    }
+                }
+            });
+        });
+    });
+
+    function clears() {
+        $("#messageTitle").val("");
+        $("#messageContent").val("");
+        $("#messageType").val("");
+    }
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#bbt").click(function(){
+            var  messageId = $("#messageId").val();
+            var  replyContent = $("#replyContent").val();
+            var date = {
+                "replyContent":replyContent,
+                "messageId":messageId
+            };
+            if ( replyContent == "" || replyContent == null || replyContent == undefined ) {
+                return alert("请输入内容！");
+            }
+            $.ajax({
+                type:"POST",
+                url: "http://localhost:8001/eply/message/add",
+                contentType: 'application/json',
+                async: false,
+                data : JSON.stringify(date),
+                success:function(result){
+                    if(result == "success"){
+                        alert("发帖成功");
+                        clears();
+                    }
+                    else{
+                        alert("发帖失败失败");
+                    }
+                }
+            });
+        });
+    });
+
+    function clears() {
+
+        $("#replyContents").val("");
+    }
+</script>
+</html>

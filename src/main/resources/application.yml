@@ -1,0 +1,22 @@
+server:
+  port: 8001
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/DEV_MESSAGE?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: 123456
+    max-active: 10
+    max-idle: 5
+    min-idle: 0
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  activiti:
+    check-process-definitions: false
+mybatis-plus:
+  mapper-locations: com/vedeng/message/demo/dao/xml/*.xml
+  type-aliases-package: com.vedeng.message.demo.model
+# log_config   DEBUG    ERROR    INFO    WARN
+
