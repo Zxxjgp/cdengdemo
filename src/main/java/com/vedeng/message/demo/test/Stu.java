@@ -1,12 +1,17 @@
 package com.vedeng.message.demo.test;
 
-import lombok.Data;
-
 import java.util.Date;
 
-@Data
-public class Student {
-
+/**
+ * 功能描述
+ * className
+ *
+ * @author Bert
+ * @date 2018/11/12 17:38
+ * @Description //TODO
+ * @version: 1.0
+ */
+public class Stu {
     //年龄
     private Integer age;
     //住址

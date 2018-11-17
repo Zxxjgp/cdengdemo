@@ -78,7 +78,7 @@ public class MyShiroRealm extends AuthorizingRealm {
     public static void main(String[] args) {
         String hashAlgorithmName = "MD5";
         Object credentials = "123456";
-        ByteSource credentialsSalt = ByteSource.Util.bytes("admins");
+        ByteSource credentialsSalt = ByteSource.Util.bytes("adminss");
         int hashIterations = 1024;
 
         Object result = new SimpleHash(hashAlgorithmName, credentials, credentialsSalt, hashIterations);

@@ -104,4 +104,12 @@ public class MessageController {
         }
         return   mv;
     }
+
+    @RequestMapping(value = "getString")
+    @ResponseBody
+    public String getString(){
+        com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
+        result.put("successData",5);
+        return result.toString();
+    }
 }

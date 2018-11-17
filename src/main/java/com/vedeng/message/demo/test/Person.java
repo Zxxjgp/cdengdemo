@@ -51,4 +51,8 @@ public class Person {
         return "Person [name=" + name + ", gender=" + gender + ", age=" + age + ", height=" + height + "]";
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

@@ -5,8 +5,11 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap/css/layer.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/layui.js"></script>
+    <script type="text/javascript" src="js/layer.js"></script>
     <style type="text/css">
         body {
             padding: 20px;
@@ -147,6 +150,25 @@
 </body>
 <script>
     $(document).ready(function(){
+
+        $.ajax({
+            type : "get",
+            url : "http://localhost:8001/message/getString",
+            async: false,
+            success: function (data) {
+                var successData=0;
+                var json = eval('(' + data + ')');
+                for (var key in json) {
+                    if (key == "successData") {
+                        successData = json[key];
+                    }
+                }
+                layer.alert(successData);
+                layer.alert(195);
+            }
+        });
+
+
         $("#hit").click(function(){
             var dataJson = $("#form-user-add").serialize();
             var  messageTitle = $("#messageTitle").val();
