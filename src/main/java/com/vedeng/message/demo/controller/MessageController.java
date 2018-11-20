@@ -41,6 +41,10 @@ public class MessageController {
     @Resource
     private ReplyMessageServiceImpl replyMessageService;
 
+    @Resource
+    private  ApiController apiController;
+
+
     EntityWrapper<ReplyMessage> replyMessageEntityWrapper = new EntityWrapper<ReplyMessage>();
     /**
      * 增加帖子
@@ -110,6 +114,13 @@ public class MessageController {
     public String getString(){
         com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
         result.put("successData",5);
+        result.put("suc",apiController.sendData());
+
         return result.toString();
+    }
+
+    @RequestMapping("jumpSearch")
+    public String jumpSearch(){
+        return "search";
     }
 }
