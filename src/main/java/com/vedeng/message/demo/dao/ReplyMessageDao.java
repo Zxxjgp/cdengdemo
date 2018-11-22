@@ -21,4 +21,17 @@ public interface ReplyMessageDao extends BaseMapper<ReplyMessage> {
      * @return
      */
     List<ReplyMessage> findByReplyId(@Param("replyReplyId") Integer replyReplyId);
+
+    /**
+     *
+     * @return
+     */
+    List<ReplyMessage> testFindList();
+
+
+    /**
+     *
+     * @return
+     */
+    ReplyMessage testFindLists();
 }

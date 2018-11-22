@@ -1,6 +1,7 @@
 package com.vedeng.message.demo.test;
 
 import com.vedeng.message.demo.utils.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
@@ -84,7 +85,7 @@ public class Test {
             System.out.println("11111111");
         }*/
 
-        List<Student> list = new ArrayList<>(2);
+     /*   List<Student> list = new ArrayList<>(2);
         Student student = new Student();
         student.setAddress("江苏南京");
         student.setAge(15);
@@ -107,8 +108,32 @@ public class Test {
         System.out.println(list.size());
         List<Student> collect = list.stream().filter( x -> x.getAddress().length() > 0).collect(Collectors.toList());
         System.out.println(collect.size());
+*/
 
+/*        lablr :for (int i =0 ; i < 6 ; i++){
 
+            if (i % 2 == 0){
+                System.out.println("wqewqewq"+i);
+                continue;
+            }
+            for ( int j = 0 ; j < 6; j++){
+                if (j == 4){
+                    System.out.println(j+"不要");
+
+                    break ;
+                }
+
+            }
+            System.out.println(121212);
+
+        }*/
+
+        String str = "";
+        String ss = null;
+        String sss = "   ";
+        if (StringUtils.isNotBlank(sss)){
+            System.out.println("ssssssssssssssssssssssss");
+        }
 
 
    /*     System.out.println(list.size());

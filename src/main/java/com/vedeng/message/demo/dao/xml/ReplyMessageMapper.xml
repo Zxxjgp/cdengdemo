@@ -32,4 +32,22 @@
              </if>
 
     </select>
+
+    <select id="testFindList" resultType="com.vedeng.message.demo.model.ReplyMessage">
+        SELECT
+          MESSAGE_ID,
+          REPLY_CONTENT
+        FROM
+          t_reply
+        WHERE MESSAGE_ID = 33
+    </select>
+
+    <select id="testFindLists" resultType="com.vedeng.message.demo.model.ReplyMessage">
+        SELECT
+          MESSAGE_ID,
+          REPLY_CONTENT
+        FROM
+          t_reply
+        WHERE MESSAGE_ID = 38
+    </select>
 </mapper>

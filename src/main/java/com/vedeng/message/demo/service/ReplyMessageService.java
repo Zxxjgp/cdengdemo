@@ -20,5 +20,15 @@ public interface ReplyMessageService {
      */
     Page<ReplyMessage> getReplyMessage(Page page, Integer messageId);
 
+    /**
+     *
+     * @return
+     */
+    List<ReplyMessage> testFindList();
 
+    /**
+     *
+     * @return
+     */
+    ReplyMessage testFindLists();
 }

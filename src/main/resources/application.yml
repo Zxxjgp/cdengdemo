@@ -3,6 +3,7 @@ server:
 
 spring:
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/DEV_MESSAGE?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
@@ -11,6 +12,7 @@ spring:
     max-idle: 5
     min-idle: 0
     druid:
+
       filters: stat,wall,log4j,config
       max-active: 100
       initial-size: 1
@@ -25,6 +27,9 @@ spring:
       pool-prepared-statements: true
       max-open-prepared-statements: 50
       max-pool-prepared-statement-per-connection-size: 20
+      filter:
+        config:
+          enabled: true
 
   thymeleaf:
     prefix: classpath:/templates/
@@ -36,3 +41,4 @@ mybatis-plus:
   type-aliases-package: com.vedeng.message.demo.model
 # log_config   DEBUG    ERROR    INFO    WARN
 
+publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJr1efUxLEF4TgPFQdSLvlw2Wjx+J5wS93znZSJHc/KEyLcBQrIfhTE+KzUz/E3ScXcj6P2jZRr1IDVBLZOf710CAwEAAQ==

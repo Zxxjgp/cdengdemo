@@ -94,6 +94,16 @@ public class ReplyMessageServiceImpl extends ServiceImpl<ReplyMessageDao, ReplyM
         return page;
     }
 
+    @Override
+    public List<ReplyMessage> testFindList() {
+        return baseMapper.testFindList();
+    }
+
+    @Override
+    public ReplyMessage testFindLists() {
+        return baseMapper.testFindLists();
+    }
+
     /**
      * 留言
      * @param entity

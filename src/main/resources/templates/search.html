@@ -41,13 +41,13 @@
     var oBtn = document.getElementById('btn');
     var oList = document.getElementById('list');
 
-    var fruits = ["桃子","苹果","梨子","香蕉","香瓜","葡萄","柠檬","橘子","草莓","草莓子","草拟吗","s","ssr"];
+    var list = [];
     //点击事件
     oBtn.addEventListener('click', function(){
         var keyWord = oTxt.value;
         // var fruitList = searchByIndexOf(keyWord,fruits);
         console.log(fruitList);
-        var fruitList = searchByRegExp(keyWord, fruits);
+        var fruitList = searchByRegExp(keyWord);
         renderFruits(fruitList);
     }, false);
     //回车查询
@@ -96,7 +96,22 @@
     //模糊匹配的时候如果不区分大小写，可以使用toLowerCase()或者toUpperCase()转换之后去匹配。
 
     //模糊查询1:利用字符串的indexOf方法
-    function searchByIndexOf(keyWord, list){
+    function searchByIndexOf(keyWord){
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: page_url + "/order/miannian/updateToMeiNianCode.do",
+            dataType: "json",
+            data: { "keyWord":keyWord },
+            success:function ( result ) {
+                alert(result);
+
+
+
+            }
+        });
+
+
         if(!(list instanceof Array)){
             return ;
         }
@@ -111,7 +126,7 @@
         return arr;
     }
     //正则匹配
-    function searchByRegExp(keyWord, list){
+    function searchByRegExp(keyWord){
         if(!(list instanceof Array)){
             return ;
         }

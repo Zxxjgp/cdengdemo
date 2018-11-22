@@ -1,3 +1,4 @@
+/*
 package com.vedeng.message.demo.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -51,18 +52,20 @@ public class DruidConfig {
         return druidDataSource;
     }
 
-    /**
+    */
+/**
      * 注册Servlet信息， 配置监控视图
      *
      * @return
-     */
+     *//*
+
     @Bean
     @ConditionalOnMissingBean
     public ServletRegistrationBean druidServlet() {
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
 
         //白名单：
-        servletRegistrationBean.addInitParameter("allow","192.168.6.195");
+        servletRegistrationBean.addInitParameter("allow","192.168.137.1");
         //IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not permitted to view this page.
         servletRegistrationBean.addInitParameter("deny","192.168.6.73");
         //登录查看信息的账号密码, 用于登录Druid监控后台
@@ -74,11 +77,13 @@ public class DruidConfig {
 
     }
 
-    /**
+    */
+/**
      * 注册Filter信息, 监控拦截器
      *
      * @return
-     */
+     *//*
+
     @Bean
     @ConditionalOnMissingBean
     public FilterRegistrationBean filterRegistrationBean() {
@@ -88,4 +93,4 @@ public class DruidConfig {
         filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
-}
+}*/
