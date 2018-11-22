@@ -42,4 +42,6 @@ public class Stu {
     public void setData(Date data) {
         this.data = data;
     }
+    public String gg;
+    System.out.println("我是你大哥");
 }
