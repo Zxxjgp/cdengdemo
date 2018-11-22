@@ -1,6 +1,8 @@
 package com.vedeng.message.demo.test;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 功能描述
@@ -44,5 +46,15 @@ public class Stu {
     }
     public static void main(String[] args) {
         System.out.println("my name is 激光炮 ");
-    }
+        List<String> list = new ArrayList<>();
+        String str1 = "我是测试1";
+        String str2 = "我是测试2";
+        String str3 = "我是测试3";
+        list.add(str1);
+        list.add(str2);
+        list.add(str3);
+        list.stream().forEach( x -> {
+            System.out.println(x);
+        });
+     }
 }
