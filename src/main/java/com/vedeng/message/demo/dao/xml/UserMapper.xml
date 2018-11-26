@@ -15,4 +15,8 @@
         WHERE 1 = 1
           AND u.USER_NAME = #{ userName }
     </select>
+
+    <select id="testMapfindUser" resultType="com.vedeng.message.demo.model.User" parameterMap="map">
+
+    </select>
 </mapper>

@@ -1,4 +1,3 @@
-/*
 package com.vedeng.message.demo.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -16,4 +15,3 @@ import javax.servlet.annotation.WebServlet;
 public class DruidStatViewServlet extends StatViewServlet {
     private static final long serialVersionUID = 7359758657306626394L;  
 }  
-*/
