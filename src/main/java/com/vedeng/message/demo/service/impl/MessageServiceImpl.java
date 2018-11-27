@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 功能描述
@@ -75,6 +76,11 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, Message>  implem
     @Override
     public Integer increseById(Integer messageId) {
         return baseMapper.increseById(messageId);
+    }
+
+    @Override
+    public Integer insertUser(Map<String, Message> map) {
+        return baseMapper.insertUser(map);
     }
 
     /**

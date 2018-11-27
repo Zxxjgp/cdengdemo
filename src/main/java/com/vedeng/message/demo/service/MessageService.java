@@ -2,8 +2,11 @@ package com.vedeng.message.demo.service;
 
 
 import com.vedeng.message.demo.model.Message;
+import com.vedeng.message.demo.model.User;
 import com.vedeng.message.demo.utils.Page;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * 功能描述
@@ -27,4 +30,9 @@ public interface MessageService {
      * @return
      */
     Integer increseById(@Param("messageId") Integer messageId);
+
+    /**
+     * 插入消息返回主键
+     */
+    Integer insertUser(Map<String, Message> map);
 }
