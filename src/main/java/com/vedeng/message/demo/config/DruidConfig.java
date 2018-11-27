@@ -1,6 +1,7 @@
-/*
 package com.vedeng.message.demo.config;
 
+
+import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -31,6 +32,7 @@ public class DruidConfig {
         druidDataSource.setPassword(properties.getPassword());
         druidDataSource.setInitialSize(properties.getInitialSize());
         druidDataSource.setMinIdle(properties.getMinIdle());
+
         druidDataSource.setMaxActive(properties.getMaxActive());
         druidDataSource.setMaxWait(properties.getMaxWait());
         druidDataSource.setTimeBetweenEvictionRunsMillis(properties.getTimeBetweenEvictionRunsMillis());
@@ -41,10 +43,10 @@ public class DruidConfig {
         druidDataSource.setTestOnReturn(properties.isTestOnReturn());
         druidDataSource.setPoolPreparedStatements(properties.isPoolPreparedStatements());
         druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(properties.getMaxPoolPreparedStatementPerConnectionSize());
-
+        druidDataSource.setConnectionProperties(properties.getConnectionProperties());
         try {
             druidDataSource.setFilters(properties.getFilters());
-            druidDataSource.init();
+           // druidDataSource.init();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,16 +54,14 @@ public class DruidConfig {
         return druidDataSource;
     }
 
-    */
-/**
+    /**
      * 注册Servlet信息， 配置监控视图
      *
      * @return
-     *//*
-
+     */
     @Bean
     @ConditionalOnMissingBean
-    public ServletRegistrationBean druidServlet() {
+    public ServletRegistrationBean druidServlet() throws Exception {
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
 
         //白名单：
@@ -69,21 +69,19 @@ public class DruidConfig {
         //IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not permitted to view this page.
         servletRegistrationBean.addInitParameter("deny","192.168.6.73");
         //登录查看信息的账号密码, 用于登录Druid监控后台
-        servletRegistrationBean.addInitParameter("loginUsername", "admin");
-        servletRegistrationBean.addInitParameter("loginPassword", "admin");
+        servletRegistrationBean.addInitParameter("loginUsername", "root");
+        servletRegistrationBean.addInitParameter("loginPassword", ConfigTools.decrypt(properties.getPublicKey(),properties.getPassword()));
         //是否能够重置数据.
         servletRegistrationBean.addInitParameter("resetEnable", "true");
         return servletRegistrationBean;
 
     }
 
-    */
-/**
+    /**
      * 注册Filter信息, 监控拦截器
      *
      * @return
-     *//*
-
+     */
     @Bean
     @ConditionalOnMissingBean
     public FilterRegistrationBean filterRegistrationBean() {
@@ -93,4 +91,4 @@ public class DruidConfig {
         filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
-}*/
+}

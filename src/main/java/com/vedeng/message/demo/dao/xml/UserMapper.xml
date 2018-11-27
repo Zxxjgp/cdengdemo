@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vedeng.message.demo.dao.UserDao">
 
+    <resultMap id="gt" type="com.vedeng.message.demo.model.TestMap">
+        <id property="id" column="id"></id>
+        <result property="mapAge" column="map_age"></result>
+        <result property="mapName" column="map_name"></result>
+<!--        <association property="user" javaType="com.vedeng.message.demo.model.User">
+            <id property="userName" column="USER_NAME"/>
+        </association>-->
+        <association property="user" column="userId" select="com.vedeng.message.demo.dao.UserDao.selectById"></association>
+    </resultMap>
+    
+    <select id="getUs" parameterType="string" resultMap="gt">
+       select  * from test_map r LEFT JOIN t_user tu ON tu.`USER_ID` = r.`id` where  id = #{id}
+    </select>
+    
     <select id="selectUserByLoginName" resultType="com.vedeng.message.demo.model.User" parameterType="java.lang.String">
        SELECT
           u.USER_ID AS userId,
@@ -15,4 +29,56 @@
         WHERE 1 = 1
           AND u.USER_NAME = #{ userName }
     </select>
+
+    <select id="selectById" resultType="com.vedeng.message.demo.model.User" parameterType="java.lang.String">
+       SELECT
+          u.USER_ID AS userId,
+          u.USER_NAME AS userName,
+          u.USER_PASSWORD AS userPassword,
+          u.USER_SEX AS userSex,
+          u.USER_MAIL AS userMail,
+          u.ADD_TIME AS ADDTIME
+        FROM
+          t_user u
+        WHERE 1 = 1
+          AND u.USER_ID = #{ id }
+    </select>
+
+    <insert id="testMapfindUser" parameterType="Map">
+        INSERT INTO test_map (id, map_age, map_name) VALUE (#{id}, #{age}, #{name})
+    </insert>
+
+    <insert id="inertMapfindUser" parameterType="Map">
+        INSERT INTO test_map test_mapVALUE (#{map.id}, #{map.mapAge}, #{map.mapName})
+    </insert>
+    <select id="findTestCanshu" parameterType="string" resultType="com.vedeng.message.demo.model.TestMap">
+        select   id AS id,
+  map_age AS mapAge,
+  map_name AS mapName from test_map where id = #{name}
+    </select>
+
+    <insert id="insertUser" keyProperty="id" useGeneratedKeys="true" parameterType="com.vedeng.message.demo.model.TestMap">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid(), '-', '') as id from dual
+        </selectKey>
+        INSERT INTO  test_map ( id ,map_age, map_name ) values (#{id}, #{mapAge}, #{mapName})
+    </insert>
+    <sql id="role_columns">
+       id , map_age, map_name
+    </sql>
+    <select id="findUser" resultType="com.vedeng.message.demo.model.TestMap" parameterType="string">
+        select 
+            <include refid="role_columns">
+
+            </include>
+        from test_map r where  id = #{id}
+    </select>
+
+    <select id="findByList" parameterType="list" resultType="com.vedeng.message.demo.model.TestMap">
+        select id , map_age as mapAge, map_name as mapName from test_map where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 </mapper>

@@ -3,11 +3,13 @@ package com.vedeng.message.demo.dao;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import com.vedeng.message.demo.model.Message;
+import com.vedeng.message.demo.model.User;
 import com.vedeng.message.demo.utils.Page;
 import org.apache.ibatis.annotations.Param;
 
 
 import java.util.List;
+import java.util.Map;
 
 public interface MessageDao extends BaseMapper<Message> {
 
@@ -29,4 +31,9 @@ public interface MessageDao extends BaseMapper<Message> {
      * @return
      */
     Integer increseById(@Param("messageId") Integer messageId);
+
+    /**
+     * 插入消息返回主键
+     */
+    Integer insertUser(Map<String, Message> map);
 }

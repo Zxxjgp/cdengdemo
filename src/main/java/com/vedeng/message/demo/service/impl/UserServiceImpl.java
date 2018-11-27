@@ -3,11 +3,13 @@ package com.vedeng.message.demo.service.impl;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.vedeng.message.demo.dao.UserDao;
+import com.vedeng.message.demo.model.TestMap;
 import com.vedeng.message.demo.model.User;
 import com.vedeng.message.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 功能描述
@@ -35,6 +37,41 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     @Override
     public User selectUserByLoginName(String userName) {
         return baseMapper.selectUserByLoginName(userName);
+    }
+
+    @Override
+    public User testMapfindUser(Map<String, String> map) {
+        return baseMapper.testMapfindUser(map);
+    }
+
+    @Override
+    public Integer inertMapfindUser(Map<String, TestMap> map) {
+        return baseMapper.inertMapfindUser(map);
+    }
+
+    @Override
+    public TestMap findTestCanshu(String uaserName) {
+        return baseMapper.findTestCanshu(uaserName);
+    }
+
+    @Override
+    public Integer insertUser(TestMap testMap) {
+        return baseMapper.insertUser(testMap);
+    }
+
+    @Override
+    public TestMap findUser(String id) {
+        return baseMapper.findUser(id);
+    }
+
+    @Override
+    public List<TestMap> findByList(List<String> list) {
+        return baseMapper.findByList(list);
+    }
+
+    @Override
+    public TestMap getUs(String id) {
+        return baseMapper.getUs(id);
     }
 
     /**

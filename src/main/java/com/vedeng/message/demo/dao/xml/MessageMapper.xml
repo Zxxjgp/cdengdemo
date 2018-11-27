@@ -32,4 +32,12 @@
             AND MESSAGE_ID = #{ messageId }
         </if>
     </update>
+
+
+    <insert id="insertUser" keyProperty="messageId" useGeneratedKeys="true" parameterType="map" keyColumn="MESSAGE_ID" >
+        insert into t_message(MESSAGE_TYPE, MESSAGE_TITLE,MESSAGE_CONTENT ,ADD_TIME, CREATOR, MOD_TIME, UPDATER, MESSAGE_VISITS, IS_DELETE ) values (
+        #{map.messageType},#{map.messageTitle},#{map.messageContent},
+        #{map.addTime},#{map.creator},#{map.addTimes},#{map.updater},#{map.messageVisits},#{map.isDelete}
+        )
+    </insert>
 </mapper>

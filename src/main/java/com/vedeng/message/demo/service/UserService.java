@@ -1,8 +1,11 @@
 package com.vedeng.message.demo.service;
 
+import com.vedeng.message.demo.model.TestMap;
 import com.vedeng.message.demo.model.User;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * 功能描述
  *
@@ -24,4 +27,18 @@ public interface UserService {
      * @return 用户对象信息
      */
     User selectUserByLoginName(String userName);
+
+    User testMapfindUser(Map<String,String> map);
+
+    Integer inertMapfindUser(Map<String, TestMap> map);
+
+    TestMap findTestCanshu(String uaserName);
+
+    Integer insertUser(TestMap testMap);
+
+    TestMap findUser(String id);
+
+    List<TestMap> findByList(List<String> list);
+
+    TestMap getUs(String id);
 }

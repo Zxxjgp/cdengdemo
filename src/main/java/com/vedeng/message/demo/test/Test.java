@@ -84,8 +84,8 @@ public class Test {
         }else{
             System.out.println("11111111");
         }*/
-
-     /*   List<Student> list = new ArrayList<>(2);
+/*
+        List<Student> list = new ArrayList<>(2);
         Student student = new Student();
         student.setAddress("江苏南京");
         student.setAge(15);
@@ -106,9 +106,15 @@ public class Test {
         set1.setAddress("");
         list.add(set1);
         System.out.println(list.size());
-        List<Student> collect = list.stream().filter( x -> x.getAddress().length() > 0).collect(Collectors.toList());
-        System.out.println(collect.size());
-*/
+        List<Student> collect = list.stream().filter( x -> StringUtils.isNotBlank(x.getAddress())).collect(Collectors.toList());
+        System.out.println(collect.size());*/
+
+/*        String str = "qwe12231";
+        System.out.println(str.replace("SKL2019",str));*/
+
+        String str = "DH135456";
+        System.out.println(str.trim().startsWith("DH"));
+
 
 /*        lablr :for (int i =0 ; i < 6 ; i++){
 
@@ -128,12 +134,12 @@ public class Test {
 
         }*/
 
-        String str = "";
+/*        String str = "";
         String ss = null;
         String sss = "   ";
         if (StringUtils.isNotBlank(sss)){
             System.out.println("ssssssssssssssssssssssss");
-        }
+        }*/
 
 
    /*     System.out.println(list.size());

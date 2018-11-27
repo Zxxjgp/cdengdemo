@@ -1,10 +1,9 @@
-/*
 package com.vedeng.message.demo.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "spring.datasource.druid")
+@ConfigurationProperties
 @Data
 public class DruidDataSourceProperties {
 
@@ -13,8 +12,6 @@ public class DruidDataSourceProperties {
     private String username = "root";
     private String password = "OUNfwrCe2MsBi5sYPwsi4ammhSbX0aZQ2X0x/oVMg+oFscD2PhMTFiukAQPc2/bKVGs+9QbzYCOu/zs+qgbImA==";
     private String publicKey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJr1efUxLEF4TgPFQdSLvlw2Wjx+J5wS93znZSJHc/KEyLcBQrIfhTE+KzUz/E3ScXcj6P2jZRr1IDVBLZOf710CAwEAAQ==";
-   */
-/* *//*
 
     private int initialSize =1;
     private int minIdle =1;
@@ -28,6 +25,6 @@ public class DruidDataSourceProperties {
     private boolean testOnReturn =false;
     private boolean poolPreparedStatements =true;
     private int maxPoolPreparedStatementPerConnectionSize = 50;
-    private String filters ="20";
+    private String filters ="config,stat,wall,log4j";
+    private String connectionProperties ="config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJr1efUxLEF4TgPFQdSLvlw2Wjx+J5wS93znZSJHc/KEyLcBQrIfhTE+KzUz/E3ScXcj6P2jZRr1IDVBLZOf710CAwEAAQ==;config.file=application.yml";
 }
-*/
