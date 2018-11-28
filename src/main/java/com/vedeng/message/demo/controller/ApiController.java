@@ -3,6 +3,9 @@ package com.vedeng.message.demo.controller;
 import com.vedeng.message.demo.model.Message;
 import com.vedeng.message.demo.model.ReplyMessage;
 import com.vedeng.message.demo.model.TestMap;
+import com.vedeng.message.demo.reflect.HelloProxy;
+import com.vedeng.message.demo.reflect.SayHello;
+import com.vedeng.message.demo.reflect.SayHelloImpl;
 import com.vedeng.message.demo.service.MessageService;
 import com.vedeng.message.demo.service.ReplyMessageService;
 import com.vedeng.message.demo.service.UserService;
@@ -11,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 功能描述
@@ -37,6 +37,8 @@ public class ApiController {
     @Resource
     private MessageService messageService;
 
+    @Resource
+    private HelloProxy helloProxy;
 
     @RequestMapping(headers = "version = v1" , value = "clint")
     public String sendData(){
@@ -106,9 +108,24 @@ public class ApiController {
             list.add("2");
         List<TestMap> byList = userService.findByList(list);
         System.out.println(byList);*/
-        TestMap us = userService.getUs("1");
-        System.out.println(us);
-        return "ok";
+/*        TestMap us = userService.getUs("1");
+        System.out.println(us);*/
+
+/*		List<TestMap> testMaps = userService.listMap("");
+
+		System.out.println(testMaps);
+
+		Set<String> s = new HashSet<>();
+		s.add("1");
+		s.add("2");
+		System.out.println(userService.setMap(s));*/
+		List<TestMap> b = userService.moHuSearch("q");
+		System.out.println(b);
+       SayHello sayHello= (SayHello)helloProxy.bind(new SayHelloImpl());
+       sayHello.sayHello("Spring");
+        String banana_and_orange_and_pear = sayHello.eat("banana and orange and pear");
+        System.out.println(banana_and_orange_and_pear);
+        return "ok"+b.toString();
     }
 
 }

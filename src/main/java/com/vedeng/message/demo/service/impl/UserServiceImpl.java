@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 功能描述
@@ -72,6 +73,21 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     @Override
     public TestMap getUs(String id) {
         return baseMapper.getUs(id);
+    }
+
+    @Override
+    public List<TestMap> listMap(String id) {
+        return baseMapper.listMap(id);
+    }
+
+    @Override
+    public List<TestMap> setMap(Set<String> setList) {
+        return baseMapper.setMap(setList);
+    }
+
+    @Override
+    public List<TestMap> moHuSearch(String mapName) {
+        return baseMapper.moHuSearch(mapName);
     }
 
     /**

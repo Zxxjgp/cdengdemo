@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public interface UserDao extends BaseMapper<User> {
@@ -41,4 +42,10 @@ public interface UserDao extends BaseMapper<User> {
     List<TestMap> findByList(List<String> list);
 
     TestMap getUs(String id);
+
+    List<TestMap> listMap(@Param("id") String id);
+
+    List<TestMap> setMap(@Param("setList") Set<String> setList);
+
+    List<TestMap> moHuSearch ( @Param("mapName") String mapName);
 }
