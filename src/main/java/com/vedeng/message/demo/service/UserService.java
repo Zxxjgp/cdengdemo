@@ -2,9 +2,11 @@ package com.vedeng.message.demo.service;
 
 import com.vedeng.message.demo.model.TestMap;
 import com.vedeng.message.demo.model.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 功能描述
@@ -41,4 +43,10 @@ public interface UserService {
     List<TestMap> findByList(List<String> list);
 
     TestMap getUs(String id);
+
+    List<TestMap> listMap(String id);
+
+    List<TestMap> setMap(Set<String> setList);
+
+    List<TestMap> moHuSearch ( String mapName);
 }

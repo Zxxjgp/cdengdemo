@@ -81,4 +81,30 @@
         </foreach>
     </select>
 
+    <select id="listMap" parameterType="string" resultType="com.vedeng.message.demo.model.TestMap">
+       select id , map_age as mapAge, map_name as mapName from test_map
+<!--       <where>
+           <if test="id != null">
+             and   id = #{id}
+           </if>
+       </where>-->
+        <trim prefix="where" >
+            <if test="id !=null and id != ''">
+                id = #{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="setMap" parameterType="string" resultType="com.vedeng.message.demo.model.TestMap">
+        select id , map_age as mapAge, map_name as mapName from test_map where id in
+        <foreach collection="setList" item="item" index="index" open="(" separator="," close=")">
+            #{ item }
+        </foreach>
+
+    </select>
+
+    <select id="moHuSearch" resultType="com.vedeng.message.demo.model.TestMap" parameterType="string">
+        select id , map_age as mapAge, map_name as mapName from test_map where map_name like concat('%',#{mapName},'%')
+
+    </select>
 </mapper>

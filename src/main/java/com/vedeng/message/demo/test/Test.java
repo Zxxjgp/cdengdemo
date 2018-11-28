@@ -1,17 +1,24 @@
 package com.vedeng.message.demo.test;
 
+/*import com.vedeng.message.demo.model.User;
 import com.vedeng.message.demo.utils.DateUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.sound.midi.Soundbank;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.vedeng.message.demo.test.Test04_collection_filter.createPerson;
+import static com.vedeng.message.demo.test.Test04_collection_filter.createPerson;*/
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.sql.SQLOutput;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * 功能描述
@@ -112,8 +119,9 @@ public class Test {
 /*        String str = "qwe12231";
         System.out.println(str.replace("SKL2019",str));*/
 
-        String str = "DH135456";
-        System.out.println(str.trim().startsWith("DH"));
+/*        String str = "DH135456";
+        System.out.println(str.trim().startsWith("DH"));*/
+
 
 
 /*        lablr :for (int i =0 ; i < 6 ; i++){
@@ -145,5 +153,50 @@ public class Test {
    /*     System.out.println(list.size());
         List<Student> list1 = list.stream().distinct().collect(Collectors.toList());
         System.out.println(list1.size());*/
+
+
+/*
+        String str = "";
+        String sre = " ";
+        String strf = null;
+        List<String > list = new ArrayList<>();
+        list.add("ewqewew");
+        Map<String,Object> map = new HashMap<>();
+        map.put("32","wq4e3qw");
+        Map<String,String> map1 = new HashMap<>();
+        System.out.println(StringUtils.isEmpty(map));
+        System.out.println(StringUtils.isNotEmpty(sre));
+        System.out.println(StringUtils.isEmpty(strf));
+        System.out.println(StringUtils.isNotEmpty(map));
+        System.out.println(StringUtils.isArray(list));*/
+
+/*        String str = "";
+        String sre = " ";
+        String strf = null;
+        Stu stu = new Stu();
+        List<String > list = new ArrayList<>();
+        list.add("ewqewew");
+        Map<String,Object> map = new HashMap<>();
+        map.put("32","wq4e3qw");
+        Map<String,String> map1 = new HashMap<>();
+        System.out.println(StringUtils.isEmpty(stu));*/
+/*
+        User user =null;
+        System.out.println(StringUtils.isEmpty(null));
+        System.out.println(StringUtils.hasText(" w"));
+        System.out.println(StringUtils.hasText(" w"));
+        System.out.println(StringUtils.replace("1234","2","wewew"));
+        System.out.println(StringUtils.capitalize("tRERERrtreHJG"));
+*/
+
+/*        System.out.println(StringUtils.isAllBlank(" ","  ",null));
+        //首字母
+        System.out.println(StringUtils.capitalize("ggJhHkj"));
+        System.out.println(StringUtils.contains("qwqwqwq","q"));
+        System.out.println(StringUtils.compare("strqq",null));
+        System.out.println("we3 ".length());*/
+
+        Comparator<Object> objectComparator = Collections.reverseOrder();
+        System.out.println(StringUtils.lowerCase("WQ")+"QW".toLowerCase());
     }
 }
