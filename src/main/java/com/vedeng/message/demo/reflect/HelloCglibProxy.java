@@ -26,6 +26,7 @@ public class HelloCglibProxy implements MethodInterceptor {
 		this.target = target;
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(this.target.getClass());
+		System.out.println(this.getClass().getName());
 		enhancer.setCallback(this);
 		return enhancer.create();
 	}
