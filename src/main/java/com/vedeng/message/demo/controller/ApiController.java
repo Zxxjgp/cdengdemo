@@ -3,6 +3,7 @@ package com.vedeng.message.demo.controller;
 import com.vedeng.message.demo.model.Message;
 import com.vedeng.message.demo.model.ReplyMessage;
 import com.vedeng.message.demo.model.TestMap;
+import com.vedeng.message.demo.reflect.HelloCglibProxy;
 import com.vedeng.message.demo.reflect.HelloProxy;
 import com.vedeng.message.demo.reflect.SayHello;
 import com.vedeng.message.demo.reflect.SayHelloImpl;
@@ -39,6 +40,10 @@ public class ApiController {
 
     @Resource
     private HelloProxy helloProxy;
+
+    @Resource
+    private HelloCglibProxy helloCglibProxy;
+
 
     @RequestMapping(headers = "version = v1" , value = "clint")
     public String sendData(){
@@ -120,11 +125,17 @@ public class ApiController {
 		s.add("2");
 		System.out.println(userService.setMap(s));*/
 		List<TestMap> b = userService.moHuSearch("q");
-		System.out.println(b);
+	/*	System.out.println(b);
        SayHello sayHello= (SayHello)helloProxy.bind(new SayHelloImpl());
        sayHello.sayHello("Spring");
         String banana_and_orange_and_pear = sayHello.eat("banana and orange and pear");
-        System.out.println(banana_and_orange_and_pear);
+        System.out.println(banana_and_orange_and_pear);*/
+
+
+        SayHello proxyIntence = (SayHello)helloCglibProxy.getIntence(new SayHelloImpl());
+
+        String banana_ang_pear_and_orange = proxyIntence.eat("banana ang pear and orange");
+        System.out.println(banana_ang_pear_and_orange);
         return "ok"+b.toString();
     }
 
